@@ -6,12 +6,12 @@ public class Board
     private static String? FEN;
     private readonly String defaultFEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
-    public Board(bool isChess960) 
+    public Board(bool isChess960)
     {
-        if (!isChess960) 
+        if (!isChess960)
         {
             FEN = defaultFEN;
-        } else 
+        } else
         {
             FEN = GenerateFEN();
         }
@@ -24,6 +24,6 @@ public class Board
 
     public static void Main() 
     {
-
+        
     }
 }
