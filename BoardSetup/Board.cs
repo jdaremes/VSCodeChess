@@ -1,111 +1,109 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Text;
 
 namespace BoardSetup;
 public class Board
 {
-    private String FEN;
+    public String FEN;
 
-    private readonly String defaultFEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-
-
+    private String defaultBackrank = "rnbqkbnr";
 
     public Board(bool isChess960)
     {
         if (!isChess960)
         {
-            FEN = defaultFEN;
+            FEN = $"{defaultBackrank}/pppppppp/8/8/8/8/PPPPPPPP/{defaultBackrank.ToUpper()} w KQkq - 0 1";
         } else
         {
             FEN = GenerateFEN();
         }
     }
 
+    /// <summary>
+    /// Generate a new FEN to begin a game of Chess960
+    /// </summary>
+    /// <returns> The generated FEN as a String, in the standardized FEN format </returns>
     public static String GenerateFEN() 
     {
-        // Generate RRNNBBKQ s.t:
+        // Generate some RRNNBBKQ s.t:
         //      Rooks surround the king
         //      Bishops are on different-colored squares
         Random rand = new Random();
         StringBuilder sb = new StringBuilder("", 8);
-
-        int count = 5;
+        
         string possiblePieces = "RQBNK";
-        bool bishopOnLightSquare = false; 
-        // "RBNK"
+        string possiblePiecesNoBishop = "RQNK";
 
         while (true) {
             string sbStr = sb.ToString();
-            Console.WriteLine(count);
-            Console.WriteLine(sbStr);
 
-            if (sbStr.Length == 8 || possiblePieces.Length == 0) 
-                break;
+            if (sbStr.Length == 8 || possiblePieces.Length == 0) break;
 
-            if (sbStr.Count(c => c == 'Q') == 1) {
-                count--;
-                possiblePieces = possiblePieces.Replace( "Q", String.Empty );
-            }
-                
-            if (sbStr.Count(c => c == 'K') == 1) {
-                count--;
-                possiblePieces = possiblePieces.Replace( "K", String.Empty );
-            }
+            if (sbStr.Count(c => c == 'Q') == 1) possiblePieces = possiblePieces.Replace("Q", String.Empty);
+    
+            if (sbStr.Count(c => c == 'K') == 1) possiblePieces = possiblePieces.Replace( "K", String.Empty );
 
-            if (sbStr.Count(c => c == 'N') == 2) {
-                count--;
-                possiblePieces = possiblePieces.Replace( "N", String.Empty );
-            }
+            if (sbStr.Count(c => c == 'N') == 2) possiblePieces = possiblePieces.Replace( "N", String.Empty );
 
-            if (sbStr.Count(c => c == 'B') == 2) {
-                count--;
-                possiblePieces = possiblePieces.Replace( "B", String.Empty );
-            }
+            if (sbStr.Count(c => c == 'B') == 2) possiblePieces = possiblePieces.Replace( "B", String.Empty );
 
-            if (sbStr.Count(c => c == 'R') == 2) {
-                count--;
-                possiblePieces = possiblePieces.Replace( "R", String.Empty);
-            }
+            if (sbStr.Count(c => c == 'R') == 2) possiblePieces = possiblePieces.Replace( "R", String.Empty );
 
-            // Rook condition
-            //  See if we've placed a rook already
-            if (count == 0 || count == -1)
+            possiblePiecesNoBishop = possiblePieces.Replace("B", String.Empty);
+
+            // Bishop condition
+            //  Make sure that the bishops are not on the same color
+            if (sbStr.Contains('B'))
             {
-                break;
-            }
-            sb.Append( possiblePieces.ElementAt( rand.Next(0, count)) );
+                int bIndex = sbStr.IndexOf('B');
 
-            
+                // If the second bishop would end up on the same colored square,
+                //  add to the string using a version of possiblePieces that does not have 'B'
+                if (bIndex % 2 == sbStr.Length % 2)
+                {
+                    sb = RookCondition(sb, rand, possiblePiecesNoBishop, sbStr);
+                } // Otherwise, add to it normally, as the bishops would end up on different squares
+                else
+                {
+                    sb = RookCondition(sb, rand, possiblePieces, sbStr);
+                }
+            } else
+            {
+                sb = RookCondition(sb, rand, possiblePieces, sbStr);
+            }
         }
 
+        String sbString = sb.ToString();
 
-        // Random generation
-        
-        // K - 1
+        return $"{sbString.ToLower()}/pppppppp/8/8/8/8/PPPPPPPP/{sbString} w KQkq - 0 1";
+    }
 
-        // 1st Square - Can't be King, random number from 0 to 4
-        // 2nd Square - Can't be king if rook hasn't been palced. 
-        //              Can't be rook if a rook has been placed
-        // 3rd Square - Can't be king if rook hasn't been placed,
-        //              Can't be bishop if a bishop has been placed
-        // 4th Square - Can't be king if rook hasn't been placed.
+    /// <summary>
+    /// Helper method to handle the logic of the Rook Condition of generating the FEN.
+    /// (To allow both Queenside and Kingside castling, the King must be in the center of both rooks)
+    /// </summary>
+    /// <param name="sb"> The StringBuilder that will build the FEN </param>
+    /// <param name="rand"> The Random instance that will generate random numbers </param>
+    /// <param name="possiblePieces"> The String of possiblePieces that can be added to the FEN </param>
+    /// <param name="sbStr"> The String that represents the FEN thus far </param>
+    /// <returns></returns>
+    public static StringBuilder RookCondition(StringBuilder sb, Random rand, String possiblePieces, String sbStr)
+    {
+        // 
+        if (sbStr.Contains('R'))
+        {
+            if (sbStr.Contains('K'))
+                sb.Append(possiblePieces.ElementAt(rand.Next(0, possiblePieces.Length)));
+            else
+                sb.Append(possiblePieces.ElementAt(rand.Next(1, possiblePieces.Length)));
+        }
+        else
+        {
+            sb.Append(possiblePieces.ElementAt(rand.Next(0, possiblePieces.Length - 1)));
+        }
 
-
-        //      Rooks: Designate one as the left, one as the right
-        //              The left rook can never be further than the 6th square (5th index)
-        //              The right rook "    "    "   "      "     " 3rd square (2nd index)
-        //         i.e, RKR-----  -----RKR, where the dashes indicate the rest of the pieces
-
-        //              Left Rook (0-5)
-        //              Right Rook (2-7)
-
-        //      Bishops: Designate one as dark-squared, one as light-squared
-        //               Each one can only be placed on 1/2 of the potential squares
-        //              One can only be even indices, one only odd (add 1 to index first)
-
-
-
-        return sb.ToString();
+        return sb;
     }
 
     public static void Main() 
