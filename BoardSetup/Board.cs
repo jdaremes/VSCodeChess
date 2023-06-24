@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Random;
 using System.Text;
 
 namespace BoardSetup;
@@ -31,66 +30,52 @@ public class Board
         StringBuilder sb = new StringBuilder("", 8);
 
         int count = 5;
-        char[] possPieces = "";
         string possiblePieces = "RQBNK";
+        bool bishopOnLightSquare = false; 
         // "RBNK"
 
         while (true) {
-            if (sb.Contains('Q')) {
+            string sbStr = sb.ToString();
+            Console.WriteLine(count);
+            Console.WriteLine(sbStr);
+
+            if (sbStr.Length == 8 || possiblePieces.Length == 0) 
+                break;
+
+            if (sbStr.Count(c => c == 'Q') == 1) {
                 count--;
-                possiblePieces.Replace( 'Q','' );
+                possiblePieces = possiblePieces.Replace( "Q", String.Empty );
             }
                 
-            if (sb.Contains('K')) {
+            if (sbStr.Count(c => c == 'K') == 1) {
                 count--;
-                possiblePieces.Remove( 'K','' );
+                possiblePieces = possiblePieces.Replace( "K", String.Empty );
             }
 
-            if (sb.count('N') == 2) {
+            if (sbStr.Count(c => c == 'N') == 2) {
                 count--;
-                possiblePieces.Replace( 'N','' );
+                possiblePieces = possiblePieces.Replace( "N", String.Empty );
             }
 
-            if (sb.count('B') == 2) {
+            if (sbStr.Count(c => c == 'B') == 2) {
                 count--;
-                possiblePieces.Replace( 'B','' );
+                possiblePieces = possiblePieces.Replace( "B", String.Empty );
             }
 
-            if (sb.count('R') == 2) {
+            if (sbStr.Count(c => c == 'R') == 2) {
                 count--;
-                possiblePieces.Replace( 'R','' );
+                possiblePieces = possiblePieces.Replace( "R", String.Empty);
             }
-
-            if ( possiblePieces.Length == 0 )
-                break;
 
             // Rook condition
             //  See if we've placed a rook already
-
-            if (!sb.Contains('R')) 
+            if (count == 0 || count == -1)
             {
-                char square = possiblePieces.charAt( rand.NextInt( 0, count-1 ));
-                sb.Add(square);
-                continue;
-            } else 
-            {
-                if (sb.Contains('K')) 
-                {
-                    char square = possiblePieces.charAt( rand.NextInt( 0, count-1 ));
-                    sb.Add(square);
-                    continue;
-                } else 
-                {
-                    char square = possiblePieces.charAt( rand.NextInt( 1, count ));
-                    sb.Add(square);
-                    continue;
-                }
+                break;
             }
+            sb.Append( possiblePieces.ElementAt( rand.Next(0, count)) );
 
             
-
-
-
         }
 
 
@@ -120,7 +105,7 @@ public class Board
 
 
 
-        return "";
+        return sb.ToString();
     }
 
     public static void Main() 

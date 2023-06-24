@@ -1,0 +1,12 @@
+C:\Users\James\Documents\VSCodeChess\BoardSetup\bin\Debug\net7.0\BoardSetup.deps.json
+C:\Users\James\Documents\VSCodeChess\BoardSetup\bin\Debug\net7.0\BoardSetup.dll
+C:\Users\James\Documents\VSCodeChess\BoardSetup\bin\Debug\net7.0\BoardSetup.pdb
+C:\Users\James\Documents\VSCodeChess\BoardSetup\obj\Debug\net7.0\BoardSetup.csproj.AssemblyReference.cache
+C:\Users\James\Documents\VSCodeChess\BoardSetup\obj\Debug\net7.0\BoardSetup.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\James\Documents\VSCodeChess\BoardSetup\obj\Debug\net7.0\BoardSetup.AssemblyInfoInputs.cache
+C:\Users\James\Documents\VSCodeChess\BoardSetup\obj\Debug\net7.0\BoardSetup.AssemblyInfo.cs
+C:\Users\James\Documents\VSCodeChess\BoardSetup\obj\Debug\net7.0\BoardSetup.csproj.CoreCompileInputs.cache
+C:\Users\James\Documents\VSCodeChess\BoardSetup\obj\Debug\net7.0\BoardSetup.dll
+C:\Users\James\Documents\VSCodeChess\BoardSetup\obj\Debug\net7.0\refint\BoardSetup.dll
+C:\Users\James\Documents\VSCodeChess\BoardSetup\obj\Debug\net7.0\BoardSetup.pdb
+C:\Users\James\Documents\VSCodeChess\BoardSetup\obj\Debug\net7.0\ref\BoardSetup.dll
