@@ -15,7 +15,7 @@ the Piece class. This representation is 'Square-centric,' and allows the program
 
 ## Overview of Current Functionality
 
-The BoardSetup project includes 3 files: 
+The BoardSetup project includes 4 files: 
 
 	-Board.cs, which generates the FEN (default for normal Chess, generates one for Chess960), and sets up the board, including 
 	pieces in its array representation
