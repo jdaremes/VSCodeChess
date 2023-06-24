@@ -6,8 +6,9 @@ namespace BoardSetup;
 public class Board
 {
     public String FEN;
+    private readonly String defaultBackrank = "rnbqkbnr";
 
-    private String defaultBackrank = "rnbqkbnr";
+    internal int[] Square;
 
     /// <summary>
     ///     Constructor for a new board, initializes FEN
@@ -39,12 +40,14 @@ public class Board
         string possiblePieces = "RQBNK";
         string possiblePiecesNoBishop = "RQNK";
 
+        string sbStr = "";
+
         while (true) {
-            string sbStr = sb.ToString();
+            sbStr = sb.ToString();
 
             if (sbStr.Length == 8 || possiblePieces.Length == 0) break;
 
-            if (sbStr.Count(c => c == 'Q') == 1) possiblePieces = possiblePieces.Replace("Q", String.Empty);
+            if (sbStr.Count(c => c == 'Q') == 1) possiblePieces = possiblePieces.Replace( "Q", String.Empty );
     
             if (sbStr.Count(c => c == 'K') == 1) possiblePieces = possiblePieces.Replace( "K", String.Empty );
 
@@ -78,9 +81,9 @@ public class Board
             }
         }
 
-        String sbString = sb.ToString();
+        sbStr = sb.ToString();
 
-        return $"{sbString.ToLower()}/pppppppp/8/8/8/8/PPPPPPPP/{sbString} w KQkq - 0 1";
+        return $"{sbStr.ToLower()}/pppppppp/8/8/8/8/PPPPPPPP/{sbStr} w KQkq - 0 1";
     }
 
     /// <summary>
@@ -94,7 +97,6 @@ public class Board
     /// <returns></returns>
     public static StringBuilder RookCondition(StringBuilder sb, Random rand, String possiblePieces, String sbStr)
     {
-        // 
         if (sbStr.Contains('R'))
         {
             if (sbStr.Contains('K'))
