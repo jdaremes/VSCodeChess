@@ -1,0 +1,1 @@
+C:\Users\James\Documents\VSCodeChess\GUI\GUI.csproj;x64

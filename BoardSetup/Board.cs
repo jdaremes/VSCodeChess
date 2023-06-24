@@ -9,6 +9,10 @@ public class Board
 
     private String defaultBackrank = "rnbqkbnr";
 
+    /// <summary>
+    ///     Constructor for a new board, initializes FEN
+    /// </summary>
+    /// <param name="isChess960"> Decides whether to use default or to generate 960 FEN </param>
     public Board(bool isChess960)
     {
         if (!isChess960)
@@ -21,7 +25,7 @@ public class Board
     }
 
     /// <summary>
-    /// Generate a new FEN to begin a game of Chess960
+    ///     Generate a new FEN to begin a game of Chess960.
     /// </summary>
     /// <returns> The generated FEN as a String, in the standardized FEN format </returns>
     public static String GenerateFEN() 
@@ -80,7 +84,7 @@ public class Board
     }
 
     /// <summary>
-    /// Helper method to handle the logic of the Rook Condition of generating the FEN.
+    ///     Helper method to handle the logic of the Rook Condition of generating the FEN.
     /// (To allow both Queenside and Kingside castling, the King must be in the center of both rooks)
     /// </summary>
     /// <param name="sb"> The StringBuilder that will build the FEN </param>

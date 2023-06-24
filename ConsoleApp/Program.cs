@@ -6,4 +6,3 @@ Console.WriteLine("Hello, World!");
 string fen = BoardSetup.Board.GenerateFEN();
 
 Console.WriteLine(fen);
-
