@@ -15,9 +15,19 @@ the Piece class. This representation is 'Square-centric,' and allows the program
 
 ## Overview of Current Functionality
 
-The VSCodeChess solution currently contains the Board.cs class, which initializes the board based on whether or not the user has selected Chess960 (if they have, it will randomly generate an FEN code to draw the board).
+The BoardSetup project includes 3 files: 
+	-Board.cs, which generates the FEN (default for normal Chess, generates one for Chess960), and sets up the board, including 
+	pieces in its array representation
 
-NOTE: Further explanation of Board code can be found in the BoardSetup project README
+	-Move.cs, an internal class that holds every method for calculating a piece's moves. 
+	NOTE: This class currently only calculates moves that are 'pseudolegal', meaning that the opponent's King can be potentially 
+	be captured. In the future, this class will also determine whether a move gives the opponent a move where the player's King can
+	be captured, invalidating the original move.
+
+	-Piece.cs, an abstract class which holds the information of what type/color a piece is, where it is on the board, and includes 
+	abstract methods for calculating that piece's possible/legal moves.
+
+	-Pieces.cs, which contains each piece's override of the methods in the Piece.cs class.
 
 ### Works Cited
 
