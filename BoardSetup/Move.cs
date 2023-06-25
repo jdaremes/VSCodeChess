@@ -169,39 +169,58 @@ namespace BoardSetup
 
         public static void KingMoveLogic(Board board, int pos, int pieceInfo, ArrayList legalMoves)
         {
+            string pieceInfoStr = pieceInfo + "";
+
             // x is an array of all possible moves on the board, in the following format:
             // [King's current position] + [Element in x] = [King's position after move is played]
             ArrayList x = new ArrayList(8) { 7,  8,  9,  1, 
                                             -7, -8, -9, -1};
             
-            // If the king is on the top/bottom file and/or the leftmost/rightmost rank
-            if ((pos - 1) % 8 == 0)
+            // If the king is on the top/bottom file and/or the leftmost/rightmost rank,
+            // remove the moves that will go off the board
+            if (pos % 8 == 0)
             {
+                // Moves to the left
                 x.Remove(-1);
                 x.Remove(7);
                 x.Remove(-9);
             }
-            if (pos < 9)
+            if (pos < 8)
             {
+                // Moves below the king
                 x.Remove(-9);
                 x.Remove(-8);
                 x.Remove(-7);
             }
-            if (pos > 56)
+            if (pos > 55)
             {
-                x.Remove();
+                // Moves above the king
+                x.Remove(7);
+                x.Remove(8);
+                x.Remove(9);
             }
-
+            if ((pos+1) % 8 == 0)
+            {
+                // Moves to the right
+                x.Remove(9);
+                x.Remove(1);
+                x.Remove(-7);
+            }
 
             foreach (int deltaX in x)
             {
-                string squareStr = board.Square[]
-                if ()
+                string squareStr = board.Square[pos + deltaX] + "";
+                
+                if (squareStr.ElementAt(0) == pieceInfoStr.ElementAt(0)) continue;
+                else if (squareStr.ElementAt(1) == '1')
                 {
-
+                    // TODO: King capture 1.5
+                    legalMoves.Add(pos + deltaX); continue;
+                } else
+                {
+                    legalMoves.Add(pos + deltaX); continue;
                 }
             }
-
         }
 
         public static void PossibleMovesByDirection(Direction[] arr, Board board, int pos, int pieceInfo, ArrayList legalMoves)

@@ -35,9 +35,9 @@ namespace BoardSetup
 
         public abstract Boolean canMove(Board board);
 
-        public abstract HashSet<int> possibleMoves(Board board);
+        public abstract ArrayList possibleMoves(Board board);
 
-        public HashSet<int> generateAllPossibleMoves(Board board) { return null; }
+        public ArrayList generateAllPossibleMoves(Board board) { return null; }
 
         public ArrayList generatePossibleMoves(Direction[] arr, Board board, int pos, int pieceInfo)
         {
@@ -47,12 +47,15 @@ namespace BoardSetup
             if ( arr.Length == 0 )
             {
                 Move.KnightMoveLogic(board, pos, pieceInfo, legalMoves);
+            // A length of 1 is a pawn
             } else if (arr.Length == 1)
             {
                 Move.PawnMoveLogic(board, pos, pieceInfo, legalMoves);
+            // 2 = King
             } else if (arr.Length == 2)
             {
-                // KingMoveLogic
+                Move.KingMoveLogic(board, pos, pieceInfo, legalMoves);
+            // All other pieces (Bishop, Rook, Queen), can simply be denoted by their possible moves
             } else
             {
                 Move.PossibleMovesByDirection(arr, board, pos, pieceInfo, legalMoves);
