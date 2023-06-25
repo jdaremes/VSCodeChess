@@ -112,8 +112,4 @@ public class Board
         return sb;
     }
 
-    public static void Main() 
-    {
-        
-    }
 }
