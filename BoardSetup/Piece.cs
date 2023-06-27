@@ -63,6 +63,5 @@ namespace BoardSetup
 
             return legalMoves;
         }
-
     }
 }

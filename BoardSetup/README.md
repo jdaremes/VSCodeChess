@@ -18,7 +18,9 @@ the Piece class. This representation is 'Square-centric,' and allows the program
 The BoardSetup project includes 4 files: 
 
 	-Board.cs, which generates the FEN (default for normal Chess, generates one for Chess960), and sets up the board, including 
-	pieces in its array representation
+	pieces in its array representation.
+
+	NOTE: Some FENs in GenerateFEN may be more likely to be generated than others
 
 	-Move.cs, an internal class that holds every method for calculating a piece's moves. 
 	NOTE: This class currently only calculates moves that are 'pseudolegal', meaning that the opponent's King can be potentially 

@@ -1,12 +1,17 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace BoardSetup;
 public class Board
 {
-    public String FEN;
-    private readonly String defaultBackrank = "rnbqkbnr";
+    public string FEN;
+    public string trimmedFEN;
+    private readonly string defaultBackrank = "rnbqkbnr";
+
+    Regex lastPartOfFEN = new Regex(@" (w{1}|b{1}) ([A-Z]{0,2}[kq]{0,2}|-{1}) ([a-z]{1}[1-8]{1}|-) [0-9]+ [0-9]+");
 
     internal int[] Square;
 
@@ -23,6 +28,15 @@ public class Board
         {
             FEN = GenerateFEN();
         }
+        new Board(FEN);
+    }
+
+    public Board(string FEN)
+    {
+        Square = new int[64];
+
+        string trimmedFEN = lastPartOfFEN.Replace(FEN, String.Empty);
+        Debug.WriteLine(trimmedFEN);
     }
 
     /// <summary>
@@ -100,7 +114,25 @@ public class Board
         if (sbStr.Contains('R'))
         {
             if (sbStr.Contains('K'))
+            {
+                // Handling edge case:
+                //   When the bishop can't be placed in the same index as another (Bishop condition),
+                //   but it's the only possible piece left
+                if (possiblePieces.Length == 0)
+                {
+                    // To solve this edge case, this code simply swaps item at that index
+                    // with a bishop
+                    char c = sb.ToString().ElementAt(sb.Length-1);
+
+                    sb.Remove(sb.Length-1, 1);
+                    sb.Append('B');
+                    sb.Append(c);
+
+                    return sb;
+                }
                 sb.Append(possiblePieces.ElementAt(rand.Next(0, possiblePieces.Length)));
+            }
+                
             else
                 sb.Append(possiblePieces.ElementAt(rand.Next(1, possiblePieces.Length)));
         }
