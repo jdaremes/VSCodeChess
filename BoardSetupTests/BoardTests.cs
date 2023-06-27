@@ -18,7 +18,7 @@ namespace BoardSetupTests
         {
             BoardSetup.Board board = new BoardSetup.Board(false);
 
-            Debug.WriteLine(board.trimmedFEN);
+            board.ToString();
         }
 
 

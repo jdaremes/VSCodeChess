@@ -35,3 +35,5 @@ The BoardSetup project includes 4 files:
 ### Works Cited
 
 	1. Notes on 'Square-Centric' Board Representation -- https://www.chessprogramming.org/Board_Representation#Square_Centric
+
+	2. How to concatenate two integers -- https://stackoverflow.com/questions/1014292/concatenate-integers-in-c-sharp

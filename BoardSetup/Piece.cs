@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace BoardSetup
                     S
     }
 
+
     public abstract class Piece
     {
         public static readonly int       White = 8;
@@ -28,6 +30,7 @@ namespace BoardSetup
         public static readonly int      Bishop = 4;
         public static readonly int        Rook = 5;
         public static readonly int       Queen = 6;
+
 
         private int position;
         private int color;

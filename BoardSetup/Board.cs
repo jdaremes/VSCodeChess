@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Reflection;
 using System.Text;
@@ -9,11 +10,42 @@ public class Board
 {
     public string FEN;
     public string trimmedFEN;
+
     private readonly string defaultBackrank = "rnbqkbnr";
+
 
     Regex lastPartOfFEN = new Regex(@" (w{1}|b{1}) ([A-Z]{0,2}[kq]{0,2}|-{1}) ([a-z]{1}[1-8]{1}|-) [0-9]+ [0-9]+");
 
     internal int[] Square;
+
+    public readonly Dictionary<char, int> charToPiece = new Dictionary<char, int>()
+    { {'R', ConcatenateChars(Piece.White,Piece.Rook)}, 
+      {'N', ConcatenateChars(Piece.White,Piece.Knight)},
+      {'B', ConcatenateChars(Piece.White,Piece.Bishop)},
+      {'Q', ConcatenateChars(Piece.White,Piece.Queen)},
+      {'K', ConcatenateChars(Piece.White,Piece.King)}, 
+      {'P', ConcatenateChars(Piece.White,Piece.Pawn)},
+      {'r', ConcatenateChars(Piece.Black,Piece.Rook)}, 
+      {'n', ConcatenateChars(Piece.Black,Piece.Knight)},
+      {'b', ConcatenateChars(Piece.Black, Piece.Bishop)}, 
+      {'q', ConcatenateChars(Piece.Black, Piece.Queen)}, 
+      {'k', ConcatenateChars(Piece.Black, Piece.King)}, 
+      {'p', ConcatenateChars(Piece.Black, Piece.Pawn)} };
+
+    /// <summary>
+    /// Helper method to convert chars to ints 
+    /// (Credit to Rex M, StackOverflow)
+    /// 
+    /// https://stackoverflow.com/questions/1014292/concatenate-integers-in-c-sharp
+    /// </summary>
+    /// <param name="a"> the first integer to convert </param>
+    /// <param name="b"> the second integer "    " </param>
+    /// <returns> the two integers concatenated (e.g, for integers 0 and 1, returns 01) </returns>
+    public static int ConcatenateChars(int a, int b)
+    {
+        return int.Parse(a.ToString() + b.ToString());
+    }
+
 
     /// <summary>
     ///     Constructor for a new board, initializes FEN
@@ -31,12 +63,36 @@ public class Board
         new Board(FEN);
     }
 
+    /// <summary>
+    ///     Constructor for a board via string of FEN. (used by other constructor)
+    /// </summary>
+    /// <param name="FEN"></param>
     public Board(string FEN)
     {
         Square = new int[64];
 
         string trimmedFEN = lastPartOfFEN.Replace(FEN, String.Empty);
         Debug.WriteLine(trimmedFEN);
+
+
+        int i = 0;
+        foreach (char c in trimmedFEN)
+        {
+            if (c == '/')
+                continue;
+            else if (Char.IsDigit(c))
+            {
+                int j = c - '0';
+                for (int k = 0; k < j; k++)
+                {
+                    Square[i] = Piece.Empty;
+                    i++;
+                }
+                continue;
+            } else if (charToPiece.ContainsKey(c))
+                Square[i] = charToPiece[c];
+            i++;
+        }
     }
 
     /// <summary>
@@ -142,6 +198,16 @@ public class Board
         }
 
         return sb;
+    }
+
+    /// <summary>
+    ///     Returns the Square array as a string
+    /// </summary>
+    /// <returns></returns>
+    public override String ToString()
+    {
+        // TODO: Implement this function
+        return "";
     }
 
 }
