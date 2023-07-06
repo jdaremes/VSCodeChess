@@ -688,6 +688,9 @@
     <AppxPackagedFile Include="C:\Users\James\.nuget\packages\microsoft.windowsappsdk\1.2.221109.1\runtimes\win10-x64\native\Microsoft.WindowsAppRuntime.Bootstrap.dll">
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\James\Documents\VSCodeChess\BoardSetup\bin\Debug\net7.0\BoardSetup.dll">
+      <PackagePath>BoardSetup.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\James\Documents\VSCodeChess\GUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\GUI.deps.json">
       <PackagePath>GUI.deps.json</PackagePath>
     </AppxPackagedFile>

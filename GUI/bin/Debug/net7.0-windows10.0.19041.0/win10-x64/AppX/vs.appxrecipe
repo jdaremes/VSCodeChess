@@ -30,25 +30,25 @@
     <AppXManifest Include="C:\Users\James\Documents\VSCodeChess\GUI\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2023-06-24T20:43:20.713</Modified>
+      <Modified>2023-07-06T21:28:10.799</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\James\Documents\VSCodeChess\GUI\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2023-06-24T20:43:20.071</Modified>
+      <Modified>2023-07-06T21:28:10.474</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\James\Documents\VSCodeChess\GUI\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\GUI.runtimeconfig.json">
       <PackagePath>GUI.runtimeconfig.json</PackagePath>
-      <Modified>2023-06-24T19:45:35.766</Modified>
+      <Modified>2023-07-06T19:44:47.730</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\James\Documents\VSCodeChess\GUI\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\GUI.dll">
       <PackagePath>GUI.dll</PackagePath>
-      <Modified>2023-06-24T20:43:19.061</Modified>
+      <Modified>2023-07-06T21:28:09.593</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\James\Documents\VSCodeChess\GUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>GUI.exe</PackagePath>
-      <Modified>2023-06-24T20:43:19.086</Modified>
+      <Modified>2023-07-06T21:28:09.601</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\James\.nuget\packages\microsoft.netcore.app.runtime.win-x64\7.0.2\runtimes\win-x64\lib\net7.0\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -918,9 +918,13 @@
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.dll</PackagePath>
       <Modified>2022-11-08T19:31:24.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\James\Documents\VSCodeChess\BoardSetup\bin\Debug\net7.0\BoardSetup.dll">
+      <PackagePath>BoardSetup.dll</PackagePath>
+      <Modified>2023-07-06T19:44:40.789</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\James\Documents\VSCodeChess\GUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\GUI.deps.json">
       <PackagePath>GUI.deps.json</PackagePath>
-      <Modified>2023-06-24T20:43:20.552</Modified>
+      <Modified>2023-07-06T21:28:10.678</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files\dotnet\packs\Microsoft.Maui.Controls.Ref.win\7.0.52\ref\net7.0-windows10.0.19041\Microsoft.Maui.Controls.Compatibility.pri">
       <PackagePath>Microsoft.Maui.Controls.Compatibility.pri</PackagePath>

@@ -9,6 +9,7 @@
     ".NETCoreApp,Version=v7.0/win10-x64": {
       "GUI/1.0": {
         "dependencies": {
+          "BoardSetup": "1.0.0",
           "Microsoft.Extensions.Configuration": "7.0.0",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.Extensions.Logging": "7.0.0",
@@ -994,6 +995,11 @@
             "fileVersion": "0.0.0.0"
           }
         }
+      },
+      "BoardSetup/1.0.0": {
+        "runtime": {
+          "BoardSetup.dll": {}
+        }
       }
     }
   },
@@ -1125,6 +1131,11 @@
       "sha512": "sha512-5My+tXeFoC2+jPdLD91KDuEvssEEvrQOONrKmdFE7Upws22ASwyCbF5JglJPnCvrLGhIRqwPsV/zlyX/q5LNgQ==",
       "path": "microsoft.windowsappsdk/1.2.221109.1",
       "hashPath": "microsoft.windowsappsdk.1.2.221109.1.nupkg.sha512"
+    },
+    "BoardSetup/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   },
   "runtimes": {
